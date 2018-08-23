@@ -1,2 +1,2 @@
-# bt_scratchpad
-This is a scratchpad.  Anything in this repo should be considered WIP.
+# kermitthefog scratchpad
+This repo is a scratchpad.  Anything in this repo should be considered WIP.
