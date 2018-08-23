@@ -39,7 +39,9 @@ pre {
 <form>
   <button id="connect">Connect</button>
   <button id="disconnect">Disconnect</button>
-  <button id="send">Send 'Hello world'</button>
+  <button id="DeviceIP">Device IP Address</button>
+  <button id="DeviceID">Identify Device</button>
+  <button id="Status">Device Status</button>
 </form>
 
 <h3>Log output</h3>
@@ -151,13 +153,56 @@ function onStopButtonClick() {
   }
 }
 
-function onSendButtonClick() {
+function onIPButtonClick() {
   if (rxCharacteristic) {
     log('Sending string via RX characteristic...');
 
     var repeat = function (count) {
       if (count > 0) {
-        rxCharacteristic.writeValue(str2ab("Hello world " + count + " abcdefghijklmnopqrstuvwxyz\n"))
+        //rxCharacteristic.writeValue(str2ab("Hello world " + count + " abcdefghijklmnopqrstuvwxyz\n"))
+        rxCharacteristic.writeValue(str2ab("GetIP"))
+        .then(_ => {
+          repeat(count - 1);
+        })
+        .catch(error => {
+          log('Argh! ' + error);
+        });
+      }
+    }
+
+    repeat(50);
+  }
+}
+  
+function onIDButtonClick() {
+  if (rxCharacteristic) {
+    log('Sending string via RX characteristic...');
+
+    var repeat = function (count) {
+      if (count > 0) {
+        //rxCharacteristic.writeValue(str2ab("Hello world " + count + " abcdefghijklmnopqrstuvwxyz\n"))
+        rxCharacteristic.writeValue(str2ab("ID"))
+        .then(_ => {
+          repeat(count - 1);
+        })
+        .catch(error => {
+          log('Argh! ' + error);
+        });
+      }
+    }
+
+    repeat(50);
+  }
+}
+  
+function onStatusButtonClick() {
+  if (rxCharacteristic) {
+    log('Sending string via RX characteristic...');
+
+    var repeat = function (count) {
+      if (count > 0) {
+        //rxCharacteristic.writeValue(str2ab("Hello world " + count + " abcdefghijklmnopqrstuvwxyz\n"))
+        rxCharacteristic.writeValue(str2ab("Status"))
         .then(_ => {
           repeat(count - 1);
         })
@@ -171,7 +216,6 @@ function onSendButtonClick() {
   }
 }
 
-
 function handleNotifications(event) {
   let value = event.target.value;
 
@@ -182,7 +226,6 @@ function handleNotifications(event) {
 
   log('> ' + result);
 }
-
 
 function isWebBluetoothEnabled() {
   if (navigator.bluetooth) {
@@ -226,13 +269,30 @@ document.querySelector('#disconnect').addEventListener('click', function(event) 
   }
 });
 
-document.querySelector('#send').addEventListener('click', function(event) {
+document.querySelector('#DeviceIP').addEventListener('click', function(event) {
   event.stopPropagation();
   event.preventDefault();
 
   if (isWebBluetoothEnabled()) {
-    onSendButtonClick();
+    onIPButtonClick();
   }
+  
+document.querySelector('#DeviceID').addEventListener('click', function(event) {
+  event.stopPropagation();
+  event.preventDefault();
+
+  if (isWebBluetoothEnabled()) {
+    onIDButtonClick();
+  }
+  
+document.querySelector('#Status').addEventListener('click', function(event) {
+  event.stopPropagation();
+  event.preventDefault();
+
+  if (isWebBluetoothEnabled()) {
+    onStatusButtonClick();
+  }
+  
 });
 </script>
 
