@@ -34,7 +34,7 @@ pre {
 <form>
   <button id="connect">Connect</button>
   <button id="disconnect">Disconnect</button>
-  <button id="send">Send 'Hello world'</button>
+  <button id="send">Identify Device</button>
 </form>
 
 <h3>Log output</h3>
@@ -135,7 +135,8 @@ function onSendButtonClick() {
     log('Sending string via RX characteristic...');
     var repeat = function (count) {
       if (count > 0) {
-        rxCharacteristic.writeValue(str2ab("Hello world " + count + " abcdefghijklmnopqrstuvwxyz\n"))
+        //rxCharacteristic.writeValue(str2ab("Hello world " + count + " abcdefghijklmnopqrstuvwxyz\n"))
+        rxCharacteristic.writeValue(str2ab("ID"))
         .then(_ => {
           repeat(count - 1);
         })
