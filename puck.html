@@ -17,10 +17,27 @@
       #success-pucker{display:none;}
       .data{display:none;}
     </style>
+
+    <style>
+    body {
+      background-color: #ffffff;
+      font-family: "Helvetica", "Arial", sans-serif;
+      line-height: 2;
+    }
+
+    .blurb {
+      background-color: #f0f0f0;
+      border-radius: 0.75em;
+      display: block;
+      margin: 0.5em;
+      padding: 0.5em;
+    }
+    </style>
+        
 	</head>
 	<body>
 
-        <div>
+        <div class="blurb">
       <p>This example requires Web Bluetooth browser support and Puck.js</p>
       <script>
       <!--
@@ -34,7 +51,7 @@
         <button type="button" id="button_reset">Reset</button>
         <div>
             info:
-            <div id="log">no messages</div>
+            <div id="log" class="blurb">no messages</div>
         </div>
         <button type="button" id="b0">0</button>
         <button type="button" id="b1">1</button>
