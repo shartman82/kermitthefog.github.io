@@ -133,19 +133,19 @@ function onStopButtonClick() {
 function onSendButtonClick() {
   if (rxCharacteristic) {
     log('Sending string via RX characteristic...');
-    var repeat = function (count) {
-      if (count > 0) {
+    //var repeat = function (count) {
+    //  if (count > 0) {
         //rxCharacteristic.writeValue(str2ab("Hello world " + count + " abcdefghijklmnopqrstuvwxyz\n"))
         rxCharacteristic.writeValue(str2ab("ID"))
-        .then(_ => {
-          repeat(count - 1);
-        })
-        .catch(error => {
-          log('Argh! ' + error);
-        });
-      }
-    }
-    repeat(50);
+    //    .then(_ => {
+    //      repeat(count - 1);
+    //    })
+    //    .catch(error => {
+    //      log('Argh! ' + error);
+    //    });
+    //  }
+   // }
+   // repeat(50);
   }
 }
 function handleNotifications(event) {
