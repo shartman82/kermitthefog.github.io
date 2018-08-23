@@ -36,6 +36,7 @@ pre {
   <button id="disconnect">Disconnect</button>
   <button id="send">Identify Device</button>
   <button id="GetIP">Device IP</button>
+  <button id="Status">Device Status</button>
 </form>
 
 <h3>Log output</h3>
@@ -155,6 +156,12 @@ function onIPButtonClick() {
     rxCharacteristic.writeValue(str2ab("GetIP"))
   }
 }
+function onStatusButtonClick() {
+  if (rxCharacteristic) {
+    log('Sending string via RX characteristic...');
+    rxCharacteristic.writeValue(str2ab("Status"))
+  }
+}
 function handleNotifications(event) {
   let value = event.target.value;
   result = ''
@@ -208,6 +215,13 @@ document.querySelector('#GetIP').addEventListener('click', function(event) {
   event.preventDefault();
   if (isWebBluetoothEnabled()) {
     onIPButtonClick();
+  }
+});
+document.querySelector('#Status').addEventListener('click', function(event) {
+  event.stopPropagation();
+  event.preventDefault();
+  if (isWebBluetoothEnabled()) {
+    onStatusButtonClick();
   }
 });
 </script>
